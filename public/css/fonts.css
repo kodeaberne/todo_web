@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'Recoleta';
+	src: url('../fonts/Recoleta-Regular.woff');
+}
+
+@font-face {
+	font-family: 'Recoleta-Medium';
+	src: url('../fonts/Recoleta-Medium.woff');
+	font-weight: 500;
+}
+
+@font-face {
+	font-family: 'Recoleta-Bold';
+	src: url('../fonts/Recoleta-Bold.woff');
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: 'Recoleta-SemiBold';
+	src: url('../fonts/Recoleta-SemiBold.woff');
+	font-weight: 300;
+}
