@@ -17,28 +17,49 @@
 	<body>
 		<main>
 			<div class="todo-container-wrapper">
-			<div class="todo-container">
-				<h1>Todo</h1>
-				<div class="todo-item card">
-					<h2>Todo 1</h2>
-					<p>Description 1</p>
+				<div class="todo-container">
+					<h1>Todo</h1>
+					<div class="todo-item card">
+						<h2>Todo 1</h2>
+						<p>Description 1</p>
+					</div>
 				</div>
-			</div>
-				<button class="new-todo-item card">
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="48"
-						height="48"
-						viewBox="0 0 24 24"
-						fill="none"
-						stroke="#5A5A5A"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="lucide lucide-plus"
-					>
-						<path d="M5 12h14"></path>
+				<div class="new-todo-item-wrapper card">
+					<form action="post" class="new-todo-item-form hidden">
+						<input type="text" name="todo" id="todo" placeholder="Todo" />
+						<input type="date" name="date" id="date" placeholder="Date" />
+					</form>
+					<button class="new-todo-item">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="#9e9d9d"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-plus"
+							id="plus"
+						>
+							<path d="M5 12h14"></path>
 							<path d="M12 5v14"></path>
+						</svg>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							width="48"
+							height="48"
+							viewBox="0 0 24 24"
+							fill="none"
+							stroke="#9e9d9d"
+							stroke-width="2"
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							class="lucide lucide-check hidden"
+							id="checkmark"
+						>
+							<path d="M20 6L9 17l-5-5"></path>
 						</svg>
 					</button>
 				</div>
