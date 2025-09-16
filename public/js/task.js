@@ -8,8 +8,22 @@ const newTodoItemWrapper = document.querySelector('.new-todo-item-wrapper');
 const plus = document.querySelector('#plus');
 const checkmark = document.querySelector('#checkmark');
 
-// Variables
-let todoItems = [];
+// Save toLocal Storage
+function saveToLocalStorage() {
+	localStorage.setItem('todoItems', JSON.stringify(todoItems));
+}
+
+// Get from Local Storage
+function getFromLocalStorage() {
+	const storedTodoItems = localStorage.getItem('todoItems');
+	if (storedTodoItems) {
+		todoItems = JSON.parse(storedTodoItems);
+		renderTodoItems();
+	} else {
+		todoItems = [];
+		renderTodoItems();
+	}
+}
 
 // Functions
 function createTodoObject(title, date, uniqueId) {
@@ -22,6 +36,8 @@ function createTodoObject(title, date, uniqueId) {
 	console.log(todoObject);
 	todoItems.push(todoObject);
 	console.log(todoItems);
+	saveToLocalStorage();
+	renderTodoItems();
 }
 
 function createTodoItem(title, date, uniqueId) {
@@ -33,7 +49,7 @@ function createTodoItem(title, date, uniqueId) {
 		<p>${date}</p>
 	`;
 	todoContainer.appendChild(todoItem);
-	createTodoObject(title, date, uniqueId);
+	saveToLocalStorage();
 }
 
 function handleCheckmarkClick(e) {
@@ -43,7 +59,7 @@ function handleCheckmarkClick(e) {
 	let date = String(newTodoItemForm.querySelector('#date').value);
 	if (title && date) {
 		let uniqueId = crypto.randomUUID();
-		createTodoItem(title, date, uniqueId);
+		createTodoObject(title, date, uniqueId);
 		// Reset the form and UI state
 		newTodoItemForm.querySelector('#todo').value = '';
 		newTodoItemForm.querySelector('#date').value = '';
@@ -77,7 +93,18 @@ function resetNewTodoItem() {
 	checkmark.removeEventListener('click', handleCheckmarkClick);
 }
 
+function renderTodoItems() {
+	todoContainer.innerHTML = '<h1>Todo</h1>';
+	todoItems.forEach((todoItem) => {
+		if (!todoItem.done) {
+			createTodoItem(todoItem.title, todoItem.date, todoItem.uniqueId);
+		}
+	});
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
+	getFromLocalStorage();
+	//localStorage.clear();
 	newTodoItemWrapper.addEventListener('click', handleNewTodoItemClick);
 });
