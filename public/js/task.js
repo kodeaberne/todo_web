@@ -19,9 +19,12 @@ function getFromLocalStorage() {
 	if (storedTodoItems) {
 		todoItems = JSON.parse(storedTodoItems);
 		renderTodoItems();
+		renderDoneItems();
 	} else {
 		todoItems = [];
 		renderTodoItems();
+		renderDoneItems();
+		saveToLocalStorage();
 	}
 }
 
@@ -45,8 +48,14 @@ function createTodoItem(title, date, uniqueId) {
 	todoItem.classList.add('todo-item', 'card');
 	todoItem.id = uniqueId;
 	todoItem.innerHTML = `
+		<div class="todo-item-content">
 		<h2>${title}</h2>
 		<p>${date}</p>
+		</div>
+		<label class="container">
+    		<input type="checkbox" class="todo-item-checkbox">
+    		<div class="checkmark"></div>
+		</label>
 	`;
 	todoContainer.appendChild(todoItem);
 	saveToLocalStorage();
@@ -102,9 +111,62 @@ function renderTodoItems() {
 	});
 }
 
+function handleDoneCheckmarkClick(e) {
+	e.preventDefault();
+	e.stopPropagation();
+	console.log('clicked');
+
+	// Find the todo item container
+	const todoItemElement = e.target.closest('.todo-item, .done-item');
+	if (!todoItemElement) return;
+
+	let id = todoItemElement.id;
+	let todoItem = todoItems.find((item) => item.uniqueId === id);
+
+	if (todoItem) {
+		todoItem.done = !todoItem.done; // Toggle instead of always setting to true
+		saveToLocalStorage();
+		renderTodoItems();
+		renderDoneItems();
+	}
+}
+
+function renderDoneItems() {
+	doneContainer.innerHTML = '<h1>Done</h1>';
+	todoItems.forEach((todoItem) => {
+		if (todoItem.done) {
+			createDoneItem(todoItem.title, todoItem.date, todoItem.uniqueId);
+		}
+	});
+}
+
+function createDoneItem(title, date, uniqueId) {
+	const doneItem = document.createElement('div');
+	doneItem.classList.add('done-item', 'card');
+	doneItem.id = uniqueId;
+	doneItem.innerHTML = `
+		<div class="done-item-content">
+			<h2>${title}</h2>
+			<p>${date}</p>
+		</div>
+		<label class="container">
+    		<input type="checkbox" checked class="todo-item-checkbox">
+    		<div class="checkmark"></div>
+		</label>
+	`;
+	doneContainer.appendChild(doneItem);
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
 	getFromLocalStorage();
 	//localStorage.clear();
 	newTodoItemWrapper.addEventListener('click', handleNewTodoItemClick);
+
+	// Use event delegation for dynamically created checkboxes
+	document.addEventListener('click', (e) => {
+		if (e.target.closest('.container')) {
+			handleDoneCheckmarkClick(e);
+		}
+	});
 });
