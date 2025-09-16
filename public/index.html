@@ -16,20 +16,14 @@
 	</head>
 	<body>
 		<main>
+			<div class="todo-container-wrapper">
 			<div class="todo-container">
 				<h1>Todo</h1>
 				<div class="todo-item card">
 					<h2>Todo 1</h2>
 					<p>Description 1</p>
 				</div>
-				<div class="todo-item card">
-					<h2>Todo 2</h2>
-					<p>Description 2</p>
-				</div>
-				<div class="todo-item card">
-					<h2>Todo 3</h2>
-					<p>Description 3</p>
-				</div>
+			</div>
 				<button class="new-todo-item card">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +38,10 @@
 						class="lucide lucide-plus"
 					>
 						<path d="M5 12h14"></path>
-						<path d="M12 5v14"></path>
-					</svg>
-				</button>
+							<path d="M12 5v14"></path>
+						</svg>
+					</button>
+				</div>
 			</div>
 			<div class="done-container">
 				<h1>Done</h1>
@@ -57,4 +52,5 @@
 			</div>
 		</main>
 	</body>
+	<script src="js/task.js"></script>
 </html>

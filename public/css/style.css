@@ -55,11 +55,19 @@ p {
 		0.25px 0.25px 0.5px rgba(255, 255, 255, 0.4);
 }
 
-.todo-container {
+.todo-container-wrapper {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
 	width: 90%;
+	margin-top: 2rem;
+}
+
+.todo-container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: 100%;
 	margin-top: 2rem;
 }
 
@@ -132,4 +140,3 @@ p {
 	width: 90%;
 	margin-top: 2rem;
 }
-
