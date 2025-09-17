@@ -90,6 +90,13 @@ function handleNewTodoItemClick(e) {
 		checkmark.classList.remove('hidden');
 		newTodoItemForm.classList.remove('hidden');
 		newTodoItemWrapper.classList.add('active');
+
+		// Trigger show animation
+		newTodoItemForm.classList.add('showing');
+		setTimeout(() => {
+			newTodoItemForm.classList.remove('showing');
+		}, 300);
+
 		// Remove any existing checkmark listener first, then add new one
 		checkmark.removeEventListener('click', handleCheckmarkClick);
 		checkmark.addEventListener('click', handleCheckmarkClick);
@@ -97,10 +104,16 @@ function handleNewTodoItemClick(e) {
 }
 
 function resetNewTodoItem() {
-	plus.classList.remove('hidden');
-	checkmark.classList.add('hidden');
-	newTodoItemForm.classList.add('hidden');
-	newTodoItemWrapper.classList.remove('active');
+	// Trigger hide animation
+	newTodoItemForm.classList.add('hiding');
+	setTimeout(() => {
+		plus.classList.remove('hidden');
+		checkmark.classList.add('hidden');
+		newTodoItemForm.classList.add('hidden');
+		newTodoItemWrapper.classList.remove('active');
+		newTodoItemForm.classList.remove('hiding');
+	}, 300);
+
 	// Remove the checkmark event listener when resetting
 	checkmark.removeEventListener('click', handleCheckmarkClick);
 }
@@ -131,14 +144,29 @@ function handleDoneCheckmarkClick(e) {
 
 	if (todoItem) {
 		if (isDeleteMode) {
-			// Delete the todo item
-			deleteTodoItem(id);
+			// Delete the todo item with animation
+			deleteTodoItemWithAnimation(todoItemElement, id);
 		} else {
-			// Toggle done status
-			todoItem.done = !todoItem.done;
-			saveToLocalStorage();
-			renderTodoItems();
-			renderDoneItems();
+			// Toggle done status with animation
+			if (!todoItem.done) {
+				// Marking as done - show completion animation
+				todoItemElement.classList.add('completing');
+				setTimeout(() => {
+					todoItem.done = true;
+					saveToLocalStorage();
+					renderTodoItems();
+					renderDoneItems();
+				}, 600);
+			} else {
+				// Unmarking as done - show reverse completion animation
+				todoItemElement.classList.add('completing');
+				setTimeout(() => {
+					todoItem.done = false;
+					saveToLocalStorage();
+					renderTodoItems();
+					renderDoneItems();
+				}, 600);
+			}
 		}
 	}
 }
@@ -190,6 +218,22 @@ function deleteTodoItem(id) {
 		renderTodoItems();
 		renderDoneItems();
 	}
+}
+
+function deleteTodoItemWithAnimation(todoItemElement, id) {
+	// Add deletion animation class
+	todoItemElement.classList.add('deleting');
+
+	// Wait for animation to complete, then delete
+	setTimeout(() => {
+		const index = todoItems.findIndex((item) => item.uniqueId === id);
+		if (index !== -1) {
+			todoItems.splice(index, 1);
+			saveToLocalStorage();
+			renderTodoItems();
+			renderDoneItems();
+		}
+	}, 400);
 }
 
 // Event Listeners
