@@ -7,6 +7,10 @@ const newTodoItemForm = document.querySelector('.new-todo-item-form');
 const newTodoItemWrapper = document.querySelector('.new-todo-item-wrapper');
 const plus = document.querySelector('#plus');
 const checkmark = document.querySelector('#checkmark');
+const deleteModeToggle = document.querySelector('#delete-mode-toggle');
+
+// Global state
+let isDeleteMode = false;
 
 // Save toLocal Storage
 function saveToLocalStorage() {
@@ -80,7 +84,6 @@ function handleCheckmarkClick(e) {
 
 function handleNewTodoItemClick(e) {
 	e.preventDefault();
-
 	// Only open the form if it's not already open
 	if (newTodoItemForm.classList.contains('hidden')) {
 		plus.classList.add('hidden');
@@ -103,7 +106,10 @@ function resetNewTodoItem() {
 }
 
 function renderTodoItems() {
-	todoContainer.innerHTML = '<h1>Todo</h1>';
+	const todoHeader = document.querySelector('.todo-header');
+	todoContainer.innerHTML = '';
+	todoContainer.appendChild(todoHeader);
+
 	todoItems.forEach((todoItem) => {
 		if (!todoItem.done) {
 			createTodoItem(todoItem.title, todoItem.date, todoItem.uniqueId);
@@ -124,10 +130,16 @@ function handleDoneCheckmarkClick(e) {
 	let todoItem = todoItems.find((item) => item.uniqueId === id);
 
 	if (todoItem) {
-		todoItem.done = !todoItem.done; // Toggle instead of always setting to true
-		saveToLocalStorage();
-		renderTodoItems();
-		renderDoneItems();
+		if (isDeleteMode) {
+			// Delete the todo item
+			deleteTodoItem(id);
+		} else {
+			// Toggle done status
+			todoItem.done = !todoItem.done;
+			saveToLocalStorage();
+			renderTodoItems();
+			renderDoneItems();
+		}
 	}
 }
 
@@ -157,11 +169,39 @@ function createDoneItem(title, date, uniqueId) {
 	doneContainer.appendChild(doneItem);
 }
 
+// Delete Mode Functions
+function toggleDeleteMode() {
+	isDeleteMode = !isDeleteMode;
+
+	if (isDeleteMode) {
+		todoContainerWrapper.classList.add('delete-mode');
+		doneContainer.classList.add('delete-mode');
+	} else {
+		todoContainerWrapper.classList.remove('delete-mode');
+		doneContainer.classList.remove('delete-mode');
+	}
+}
+
+function deleteTodoItem(id) {
+	const index = todoItems.findIndex((item) => item.uniqueId === id);
+	if (index !== -1) {
+		todoItems.splice(index, 1);
+		saveToLocalStorage();
+		renderTodoItems();
+		renderDoneItems();
+	}
+}
+
 // Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
 	getFromLocalStorage();
 	//localStorage.clear();
 	newTodoItemWrapper.addEventListener('click', handleNewTodoItemClick);
+
+	// Delete mode toggle
+	if (deleteModeToggle) {
+		deleteModeToggle.addEventListener('change', toggleDeleteMode);
+	}
 
 	// Use event delegation for dynamically created checkboxes
 	document.addEventListener('click', (e) => {
