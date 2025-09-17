@@ -2,6 +2,8 @@
 const todoContainerWrapper = document.querySelector('.todo-container-wrapper');
 const todoContainer = document.querySelector('.todo-container');
 const doneContainer = document.querySelector('.done-container');
+const todoColumn = document.querySelector('.todo-column');
+const doneColumn = document.querySelector('.done-column');
 const newTodoItem = document.querySelector('.new-todo-item');
 const newTodoItemForm = document.querySelector('.new-todo-item-form');
 const newTodoItemWrapper = document.querySelector('.new-todo-item-wrapper');
@@ -202,11 +204,11 @@ function toggleDeleteMode() {
 	isDeleteMode = !isDeleteMode;
 
 	if (isDeleteMode) {
-		todoContainerWrapper.classList.add('delete-mode');
-		doneContainer.classList.add('delete-mode');
+		todoColumn.classList.add('delete-mode');
+		doneColumn.classList.add('delete-mode');
 	} else {
-		todoContainerWrapper.classList.remove('delete-mode');
-		doneContainer.classList.remove('delete-mode');
+		todoColumn.classList.remove('delete-mode');
+		doneColumn.classList.remove('delete-mode');
 	}
 }
 
