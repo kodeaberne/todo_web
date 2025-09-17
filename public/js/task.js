@@ -54,7 +54,7 @@ function createTodoItem(title, date, uniqueId) {
 	todoItem.innerHTML = `
 		<div class="todo-item-content">
 		<h2>${title}</h2>
-		<p>${date}</p>
+		<p>${date.split('-').reverse().join('-')}</p>
 		</div>
 		<label class="container">
     		<input type="checkbox" class="todo-item-checkbox">
@@ -159,7 +159,7 @@ function createDoneItem(title, date, uniqueId) {
 	doneItem.innerHTML = `
 		<div class="done-item-content">
 			<h2>${title}</h2>
-			<p>${date}</p>
+			<p>${date.split('-').reverse().join('-')}</p>
 		</div>
 		<label class="container">
     		<input type="checkbox" checked class="todo-item-checkbox">

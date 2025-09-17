@@ -137,13 +137,14 @@ p {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
-	justify-content: space-between;
+	justify-content: center;
 }
 
 .card.new-todo-item-wrapper.active {
 	height: 9rem;
 	transition: all 0.2s ease;
 	flex-direction: row;
+	justify-content: space-between;
 }
 
 .new-todo-item-form {
@@ -186,6 +187,7 @@ p {
 	padding-bottom: 6px;
 	border-radius: 20pt;
 	background-color: #fff;
+	color: #6a6a6a;
 	border: none;
 	outline: none;
 	box-shadow: inset 2px 5px 10px #bebebe;
@@ -205,6 +207,14 @@ p {
 	gap: 1.5rem;
 	width: 90%;
 	margin-top: 2rem;
+}
+
+.todo-item-content p {
+	color: #01a8ff;
+}
+
+.done-item-content p {
+	color: #01a8ff;
 }
 
 .hidden {
