@@ -9,6 +9,7 @@ body {
 	background-color: #e1e1e1;
 	font-family: 'Poppins', sans-serif;
 	overflow-x: hidden;
+	touch-action: manipulation;
 }
 
 main {
@@ -309,7 +310,6 @@ p {
 .delete-mode .done-item .container input::after {
 	display: none;
 }
-
 
 /* Hide the default checkbox */
 .container input {

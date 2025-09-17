@@ -209,4 +209,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			handleDoneCheckmarkClick(e);
 		}
 	});
+
+	// Click outside to cancel new todo form
+	document.addEventListener('click', (e) => {
+		// Check if the form is visible (not hidden)
+		if (!newTodoItemForm.classList.contains('hidden')) {
+			// Check if the click is outside the new todo item wrapper
+			if (!newTodoItemWrapper.contains(e.target)) {
+				resetNewTodoItem();
+			}
+		}
+	});
 });
