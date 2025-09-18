@@ -30,7 +30,9 @@ public/
 
 ## Live demo
 
-Visit https://kodeaberne.github.io/todo_web/ for a live demo!
+
+Visit <https://kodeaberne.github.io/todo_web/> for a live demo!
+
 
 ## Technical Details
 
