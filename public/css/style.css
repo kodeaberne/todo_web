@@ -1,3 +1,11 @@
+/* ==========================================================================
+   TODO APP - REFACTORED CSS
+   ========================================================================== */
+
+/* ==========================================================================
+   RESET & BASE STYLES
+   ========================================================================== */
+
 * {
 	margin: 0;
 	padding: 0;
@@ -12,6 +20,7 @@ body {
 	touch-action: manipulation;
 }
 
+
 main {
 	display: flex;
 	flex-direction: column;
@@ -21,6 +30,7 @@ main {
 	margin: auto;
 	padding-bottom: 4rem;
 }
+
 
 h1 {
 	font-family: 'Poppins', sans-serif;
@@ -57,10 +67,26 @@ p {
 		0.25px 0.25px 0.5px rgba(255, 255, 255, 0.4);
 }
 
-.todo-column {
+/* ==========================================================================
+   LAYOUT CONTAINERS
+   ========================================================================== */
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 90%;
+	margin: auto;
+	padding-bottom: 4rem;
+}
+
+.todo-column,
+.done-column {
 	display: flex;
 	flex-direction: column;
 	width: 100%;
+	margin-bottom: 1rem;
 }
 
 .todo-container-wrapper {
@@ -74,13 +100,25 @@ p {
 	margin-bottom: 1rem;
 }
 
-.todo-container {
+.todo-container,
+.done-container {
 	display: flex;
 	flex-direction: column;
 	gap: 1.5rem;
 	width: 100%;
+}
+
+.todo-container {
 	margin-top: 2rem;
 }
+
+.done-container {
+	margin-top: 0;
+}
+
+/* ==========================================================================
+   CARDS & ITEMS
+   ========================================================================== */
 
 .card {
 	display: flex;
@@ -96,6 +134,15 @@ p {
 		-8px -8px 16px #ffffff;
 }
 
+.todo-item-content p,
+.done-item-content p {
+	color: #01a8ff;
+}
+
+/* ==========================================================================
+   NEW TODO ITEM
+   ========================================================================== */
+
 .new-todo-item {
 	align-items: center;
 	justify-content: center;
@@ -109,7 +156,6 @@ p {
 
 .new-todo-item:hover {
 	transform: translateY(-2px);
-	cursor: pointer;
 }
 
 .new-todo-item:active {
@@ -148,12 +194,16 @@ p {
 	justify-content: center;
 }
 
-.card.new-todo-item-wrapper.active {
+.new-todo-item-wrapper.active {
 	height: 9rem;
 	transition: all 0.2s ease;
 	flex-direction: row;
 	justify-content: space-between;
 }
+
+/* ==========================================================================
+   NEW TODO FORM
+   ========================================================================== */
 
 .new-todo-item-form {
 	display: flex;
@@ -163,6 +213,11 @@ p {
 
 .new-todo-item-form input {
 	width: 100%;
+	height: 2.5rem;
+	min-height: 2.5rem;
+	padding: 0.75rem 1rem;
+	border: none;
+	outline: none;
 	border-radius: 20pt;
 	box-shadow: inset 2px 5px 10px #bebebe;
 	font-family: 'Poppins', sans-serif;
@@ -173,63 +228,22 @@ p {
 	text-shadow:
 		0.5px 0.5px 1px rgba(0, 0, 0, 0.05),
 		0.25px 0.25px 0.5px rgba(255, 255, 255, 0.4);
-	border: none;
-	outline: none;
 	transition: all 0.2s ease;
 }
 
-.new-todo-item-form #todo {
-	width: 100%;
-	height: 2.5rem;
-	min-height: 2.5rem;
-	padding: 0.75rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border: none;
-	outline: none;
-	border-radius: 20pt;
-	box-shadow: inset 2px 5px 10px #bebebe;
-	font-family: 'Poppins', sans-serif;
-	font-size: 1rem;
-	line-height: 1.6;
-}
-
 .new-todo-item-form #date {
-	width: 100%;
-	height: 2.5rem;
-	min-height: 2.5rem;
-	padding-top: 0.75rem;
-	padding-bottom: 0.75rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
-	border-radius: 20pt;
 	background-color: #fff;
-	color: #6a6a6a;
-	border: none;
-	outline: none;
-	box-shadow: inset 2px 5px 10px #bebebe;
-	font-family: 'Poppins', sans-serif;
-	font-size: 1rem;
 	-webkit-appearance: none;
 	appearance: none;
-	line-height: 1.6;
 }
 
 .new-todo-item-form input:focus {
-	box-shadow: inset 2px 5px 10px #bebebe;
 	transform: translateY(-2px);
 	cursor: pointer;
 }
 
 /* iOS-specific date input styling */
-.new-todo-item-form #date::-webkit-datetime-edit {
-	padding: 0;
-	margin: 0;
-	height: 100%;
-	display: flex;
-	align-items: center;
-}
-
+.new-todo-item-form #date::-webkit-datetime-edit,
 .new-todo-item-form #date::-webkit-datetime-edit-fields-wrapper {
 	padding: 0;
 	margin: 0;
@@ -238,12 +252,7 @@ p {
 	align-items: center;
 }
 
-.new-todo-item-form #date::-webkit-datetime-edit-text {
-	color: #6a6a6a;
-	padding: 0 0.2rem;
-	opacity: 0.7;
-}
-
+.new-todo-item-form #date::-webkit-datetime-edit-text,
 .new-todo-item-form #date::-webkit-datetime-edit-month-field,
 .new-todo-item-form #date::-webkit-datetime-edit-day-field,
 .new-todo-item-form #date::-webkit-datetime-edit-year-field {
@@ -275,33 +284,10 @@ p {
 	opacity: 0.5;
 }
 
-.done-column {
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-}
+/* ==========================================================================
+   DELETE MODE
+   ========================================================================== */
 
-.done-container {
-	display: flex;
-	flex-direction: column;
-	gap: 1.5rem;
-	width: 100%;
-	margin-top: 0;
-}
-
-.todo-item-content p {
-	color: #01a8ff;
-}
-
-.done-item-content p {
-	color: #01a8ff;
-}
-
-.hidden {
-	display: none;
-}
-
-/* Delete Mode Button Styles */
 .todo-header {
 	display: flex;
 	justify-content: space-between;
@@ -374,18 +360,6 @@ p {
 	animation: animeFillRed 0.3s linear alternate-reverse infinite;
 }
 
-@keyframes animeFillRed {
-	to {
-		stroke: rgba(255, 68, 68, 0.8);
-	}
-}
-
-@keyframes animeBorderRed {
-	to {
-		border-color: rgba(255, 68, 68, 0.8);
-	}
-}
-
 /* Delete mode state for todo items */
 .delete-mode .todo-item .container input,
 .delete-mode .done-item .container input {
@@ -401,10 +375,20 @@ p {
 	display: none;
 }
 
-/* Hide the default checkbox */
+/* ==========================================================================
+   CHECKBOXES
+   ========================================================================== */
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .container input {
 	opacity: 1;
 	-webkit-appearance: none;
+	appearance: none;
 	cursor: pointer;
 	height: 50px;
 	width: 50px;
@@ -418,12 +402,6 @@ p {
 	justify-content: center;
 	align-items: center;
 	transition: 0.5s;
-}
-
-.container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
 }
 
 .container input::after {
@@ -473,24 +451,10 @@ p {
 	transform: rotate(45deg);
 }
 
-.container input:checked:hover::after {
-	transition: 0.5s;
-	font-family: monospace;
-	content: '';
-	color: #7a7a7a;
-	font-size: 25px;
-	left: 0.45em;
-	top: 0.25em;
-	width: 0.25em;
-	height: 0.5em;
-	border: solid #7a7a7a;
-	border-width: 0 0.15em 0.15em 0;
-	transform: rotate(45deg);
-}
-
 .container input:checked:hover {
 	opacity: 1;
 	-webkit-appearance: none;
+	appearance: none;
 	cursor: pointer;
 	height: 50px;
 	width: 50px;
@@ -506,6 +470,33 @@ p {
 	transition: 0.5s;
 }
 
+.container input:checked:hover::after {
+	transition: 0.5s;
+	font-family: monospace;
+	content: '';
+	color: #7a7a7a;
+	font-size: 25px;
+	left: 0.45em;
+	top: 0.25em;
+	width: 0.25em;
+	height: 0.5em;
+	border: solid #7a7a7a;
+	border-width: 0 0.15em 0.15em 0;
+	transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   UTILITY CLASSES
+   ========================================================================== */
+
+.hidden {
+	display: none;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+
 /* Animation Classes */
 .todo-item.completing {
 	animation: taskComplete 0.6s ease-in-out forwards;
@@ -515,10 +506,7 @@ p {
 	animation: taskReverseComplete 0.6s ease-in-out forwards;
 }
 
-.todo-item.deleting {
-	animation: taskDelete 0.4s ease-in-out forwards;
-}
-
+.todo-item.deleting,
 .done-item.deleting {
 	animation: taskDelete 0.4s ease-in-out forwards;
 }
@@ -602,6 +590,22 @@ p {
 		max-height: 0;
 	}
 }
+
+@keyframes animeFillRed {
+	to {
+		stroke: rgba(255, 68, 68, 0.8);
+	}
+}
+
+@keyframes animeBorderRed {
+	to {
+		border-color: rgba(255, 68, 68, 0.8);
+	}
+}
+
+/* ==========================================================================
+   RESPONSIVE DESIGN
+   ========================================================================== */
 
 @media screen and (min-width: 768px) {
 	main {
