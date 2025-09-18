@@ -1,67 +1,55 @@
-# Opgavebeskrivelse
+# Todo Web App
 
-TL;DR
-Din opgave er at lave en ToDo-app.
+A modern, responsive todo application built with vanilla HTML, CSS, and JavaScript.
 
-Du skal løse den med udgangspunkt i vores tre bud:
+## Features
 
-Det skal virke
+- **Task Management**: Create new tasks with title and due date
+- **Status Toggle**: Mark tasks as complete or incomplete
+- **Persistent Storage**: All tasks are saved to localStorage and persist between sessions
+- **Delete Mode**: Toggle delete mode to remove tasks with visual feedback
+- **Responsive Design**: Clean, neumorphic inspired UI designed for mobile first.
+- **Smooth Animations**: Transitions and feedback for user interactions
 
-Det skal se godt ud
+## Project Structure
 
-Det skal give relevant feedback
+```
+public/
+├── index.html          # Main HTML structure
+├── css/
+│   └── style.css       # Main stylesheet
+└── js/
+    └── task.js         # Core application logic
+```
 
-## Den længere version
+## Self host
 
-Todo-task’en skal være kompleks og objektet skal indeholde mindst disse properties:
+1. Clone the repository
+2. Open `public/index.html` in a web browser
+3. Start creating and managing your tasks!
 
-Task-string - hvad er det der skal gøres/købes
-Hvor mange - hvis det er et indkøb
-done - er indkøbet udført / er tasken done
-ID
+## Live demo
 
-Der skal vedligeholdes en liste over de tasks der er done.
+Visit <https://kodeaberne.github.io/todo_web/> for a live demo!
 
-Inspiration: Kik på påmindelser/reminders på macOS, download todo-apps og prøv dem
+## Technical Details
 
-## Opgavebeskrivelse
+- **Frontend**: Pure HTML5, CSS3, and JavaScript (ES6+)
+- **Storage**: Browser localStorage for data persistence
+- **Styling**: Custom CSS with modern design principles
+- **Icons**: SVG icons for consistent visual elements
 
-Din opgave er at skabe en interaktiv ToDo-app ved hjælp af HTML, CSS og JavaScript. Du skal således bruge, de ting du har lært i løbet af de første 3 uger.
+## Usage
 
-### Minimumskrav
+1. **Adding Tasks**: Click the plus button to reveal the form, enter a task title and due date, then click the checkmark to save
+2. **Completing Tasks**: Click the checkbox next to any task to mark it as complete
+3. **Deleting Tasks**: Toggle delete mode using the trash icon, then click any task to delete it
+4. **Viewing Tasks**: Completed tasks appear in the "Done" column
 
-Din ToDo-app skal være i stand til at:
+## Browser Support
 
-Oprette en ny opgave med et unikt ID og en beskrivelse.
-Gemme mere end en simpel streng for hver opgave for at øge kompleksiteten. Dette kunne være kvantitet (antal) eller anden relevant information.
-Tillade brugerne at markere opgaver som "færdige", hvorefter de flyttes til en "Færdig"-liste.
-Tillade brugerne at fortryde færdiggørelsen af en opgave, så den ryger tilbage til "ToDo"-listen.
-Tillade brugerne at slette opgaver.
-Evt. ekstra funktioner
-Brug localStorage til at gemme opgaverne. Når en bruger opretter en ny opgave, sletter en opgave, eller ændrer status for en opgave, skal disse ændringer gemmes i localStorage. Når brugeren besøger appen igen, skal opgaverne hentes fra localStorage, så de stadig kan se deres opgaveliste, selv efter at de har lukket og genåbnet browseren.
-Din app skal også overholde følgende designprincipper:
+This application works in all modern browsers that support:
 
-Det skal se godt ud: Din app skal have et tiltalende og intuitivt design, der gør det nemt og behageligt for brugeren at interagere med.
-Det skal virke: Din app skal være funktionsdygtig og robust, hvilket betyder at alle funktioner skal fungere som forventet, og appen skal kunne håndtere eventuelle fejl på en nådig måde.
-Det skal give relevant feedback: Din app skal give passende feedback til brugerne, så de kan forstå, hvad der sker, når de interagerer med appen. Dette kan være gennem meldinger, animationer, lyde eller andre kreative løsninger.
-Opgaven er individuel, men vi opfordrer jer til at bruge jeres studiegrupper.
-
-## Dokumentationspapir
-
-Procesdokumentationen skal beskrive jeres arbejde med ToDo-app’en. Medtag hvad I synes der skal til for at dokumentere jeres proces i tekst, screendumps og illustrationer med hovedvægt på kode arbejdet.
-Procesdokumentation kan være fra 1 til 3 sider og skriv den i et sprog som var det til en kollega eller medstuderende.
-Screencast
-Som en del af dokumentationen skal I lave en skærmoptagelse hvor I forklarer essentielle dele af koden. I kan gå efter en generel forklaring af flowet i jeres ToDo-app, eller forklare en funktionalitet mere indgående.
-En video må maksimalt vare 3 minutter. Videoen skal være individuel selvom I har været to om projektet.
-Aflevering
-Aflever proces dokumentationen i wiseflow som .pdf der øverst indeholder et link til jeres todo app, tilhørende gitHub link samt link til screencast . Linkene skal være skrevet helt ud.
-Hvis I har været to om projektet så skriv jer begge to på, men I skal aflevere individuelt, og screencastene skal være individuelle.
-I skal aflevere i WiseFlow torsdag d. 18 september 23:59.
-
-## Feedback
-
-Fredagen efter afleveringen vil vi bruge vores 4 lektioner på i fællesskab at snakke om store og små sejre og stopklodser I jeres projekter.
-
-Vi kan ikke nå at gennemgå alle projekter, men vi håber at der er nogle frivillige der vil vise deres arbejde, også hvis man ikke er nået helt i mål.
-
-Vi glæder os
+- ES6+ JavaScript features
+- CSS Grid and Flexbox
+- localStorage API
